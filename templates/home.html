@@ -1,0 +1,412 @@
+{% load static %}
+{% static 'images' as baseUrl%}
+<html>
+	<title>
+		welcome page
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static '../static/fonts/css/all.css' %}">
+	<link rel="stylesheet" href="{% static '../static/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static '../static/css/style.css' %}">
+	<head>
+	</head>
+	<body>
+	<div class="logo"  >
+		<div class="container-fluid">
+			<p><a href="#section7"><i class="fab fa-apple"></i></a></p>
+		</div>
+		<div id="mySidenav" class="sidenav">
+
+					<div class="login">
+						{% if user.is_authenticated %}
+						<div class="row">
+							<div class="col-md-6">
+								<a class="username" id="profile"><i style="color:#000; font-size:40px;margin: 0px 0px 15px -39px;"class="fas fa-user-circle"></i></a>
+							</div>
+							<div class="col-md-6">
+								<a style="margin: 8px 0px 0px -80px;">Hii {{user.first_name}}</a>
+							</div>
+						</div>
+						<a class="menuicon" href="logout">Logout</a>
+						{% else %}
+						<a class="menuicon"  data-toggle="modal" data-target="#exampleModal">Login</a>
+						<a class="menuicon" data-toggle="modal" data-target="#exampleModal1">Register</a>
+						{% endif %}
+					</div>
+
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+								<div class="modal-content">
+								  <div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Login</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									  <span aria-hidden="true">&times;</span>
+									</button>
+								  </div>
+								  <div class="modal-body">
+									<form method="post" action="login">
+										{% csrf_token %}
+										<div class="container">
+											<div class="form-group">
+												<div class="form row">
+													<label for="username" class="col-md-4">Email/Username</b></label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" name="username" id="username">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="form row">
+													<label for="password" class="col-md-4">Password</b></label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" name="password" id="password">
+													</div>
+												</div>
+											</div>
+										</div>
+								  <div class="modal-footer">
+									<button type="button" class="btn" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn">Login</button>
+								  </div>
+								</form>
+								</div>
+								</div>
+							  </div>
+						</div>
+
+
+					<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" 				-labelledby	="exampleModalLabel1" aria-hidden="true">
+					  <div class="modal-dialog">
+						<div class="modal-content">
+						  <div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel1">Registration</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							  <span aria-hidden="true">&times;</span>
+							</button>
+						  </div>
+							<div>
+							  {% for message in messages %}
+							  <h3>{{message}}</h3>
+							  {% endfor %}
+						  </div>
+							<form action="register" method="post">
+							{% csrf_token %}
+								<div class="modal-body">
+									<div class="container">
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="fname">First Name</label>
+												<input type="text" class="form-control" name='first_name' id="fname">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="lname">Last Name</label>
+												<input type="text" class="form-control" name='last_name' id="lname">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="pass">Password</label>
+												<input type="text" class="form-control" name='password' id="pass">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="cpass">Confirm Password</label>
+												<input type="text" class="form-control" name='cpassword' id="cpass">
+											</div><div class="form-group col-md-6">
+												<label for="email">Email</label>
+												<input type="text" class="form-control" name='email' id="email">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="username">Username</label>
+												<input type="text" class="form-control" name='username' id="username">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="loginpage">
+									<div class= "modal-footer">
+										<button type="submit" class="btn">Register</button>
+										<button type="button" class="btn" data-dismiss="modal">Close</button>
+									</div>
+							  </div>
+							</form>
+						</div>
+					  </div>
+					  </div>
+
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+					<a class="menuicon" href="#section2" >About</a>
+					<a class="menuicon" href="#section3">models</a>
+					<a class="menuicon" href="#section4">features</a>
+					<a class="menuicon" href="#section5">Testemonial</a>
+					<a class="menuicon" href="#section6">Contact</a>
+		</div>
+				<span class="menu-open" onclick="openNav()">&#9776; </span>
+	</div>
+		<div class="welcome text-center"  id='section7'>
+			<div class="container-fluid">
+				<div class="wecomeheading">
+					<h1>Welcome to Rv world</h1>
+					<p>A smile is a curve that sets everything straight.</p>
+					<button type="button" id="section1" class="btn"><a href="#section2">Get started</a></button>
+				</div>
+			</div>
+		</div>
+		<div class="about" id="section2">
+			<div class="container-fluid text-center">
+					<h1>About</h1>
+					<p>Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services. It is considered one of the Big Tech technology  companies, alongside Amazon, Google, Microsoft and Facebook.</p>
+					<p>Apple claims that they have sold 700 million units of iPhones till date.
+						The current global population is pegged at about 7.4 billion.
+						So, around 9.4% of the worlds population uses an iPhone.
+						However, only 4.77 billion of the total global population uses cell phones, out of which only 2.1 billion use a smartphone.
+						Under these circumstances, 33.33% of the smartphone users are iPhone users</p>
+				<div class="aboutinfo">
+					<div class="container">
+
+						<div class="row">
+							<div class="col-md-6">
+								<img src="{% static '../static/images/about2.jpeg' %}">
+								<img src="{% static '../static/images/img3.jpg' %}">
+
+							</div>
+							<div class="col-md-6">
+								<h2>An intuitive, familiar interface.</h2>
+								<p>Apple products are intuitive and easy to use, which means they’re also easy for your business to support. Our interface allows employees to use familiar actions like swiping, scrolling and tapping to collaborate, stay organised and adapt to new programmes and procedures more quickly. And each iPhone, iPad and Mac comes with powerful assistive features for vision, hearing and motor skills, so they’re accessible to everyone.</p>
+
+								<h2>Secure by design.</h2>
+								<p>Just as we design our products to be simple, intuitive, and capable, we design them to be secure. iOS and macOS are built on a UNIX foundation, making them both stable and robust. We constantly encrypt information at the system level, at rest and in transit, to protect corporate data. Regular software updates protect iOS and macOS from emerging security threats. Face ID and Touch ID use your face or your fingerprint to unlock your device and authenticate apps. And we have safeguards in place to ensure that both third-party and in-house apps can only access data in authorized ways.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modelheading text-center" id='section3'>
+			<div class="container-fluid">
+				<h1>Model</h1>
+			</div>
+		</div>
+		<div class="slider">
+			<div class="container-fluid">
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="{% static '../static/images/slider1.png' %}">
+						<div class="carousel-caption d-none d-md-block slidertext">
+							<h3>iphone xs max</h3>
+							<p>Apple's big, pricey iPhone is still high quality</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{% static '../static/images/slider2.jpg' %}">
+						<div class="carousel-caption d-none d-md-block">
+							<h3>iphone xs</h3>
+							<p>No other phone is like iPhone.</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{% static '../static/images/slider3.png' %}">
+						<div class="carousel-caption d-none d-md-block">
+							<h3>iphone x</h3>
+							<p>Life is easier on iPhone.</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{% static '../static/images/slider4.jpg' %}">
+						<div class="carousel-caption d-none d-md-block slidertext">
+							<h3>iphone 7</h3>
+							<p>Just theright amount of everything.</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{% static '../static/images/slider5.jpg' %}">
+						<div class="carousel-caption d-none d-md-block">
+							<h3> ipad and iphone 4</h3>
+							<p>Add them together. Multiply their power.</p>
+						</div>
+					</div>
+				</div>
+				  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</div>
+		</div>
+		<div class="modelinfo">
+			<div class="container-fluid">
+				<div class="row">
+					{% for model in modles %}
+					<div class="col-md-3">
+						<div class="container">
+							<img src="{{model.img.url}}" alt="Avatar" class="image" style="width:100%">
+								<div class="middle">
+										<h4>{{model.name}}</h4>
+										<p>{{model.desc}}</p>
+										<div class="moreinfo">
+										<button type="button" class="btn" data-toggle="modal" data-target="#exampleModal3">More info</button>
+										</div>
+
+								</div>
+
+						</div>
+
+
+
+				</div>
+					{% endfor%}
+			</div>
+		</div>
+			<div class="Suspendisse" id="section4">
+		<div class="container-fluid">
+			<h1>features</h1>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="nunc-leo">
+						<p><i class="fab fa-itunes"></i></p>
+						<h3>itunes</h3>
+						<p> It is used to purchase, play, download, and organize digital multimedia, on personal computers running the macOS and Windows operating systems, and can be used to rip songs from CDs, as well as play content with the use of dynamic, smart playlists.</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="nunc-leo">
+						<p><i class="fas fa-fingerprint"></i></p>
+						<h3>fingerprint</h3>
+						<p>With just a touch of your finger, the sensor quickly reads your fingerprint and automatically unlocks your device. You can use it to authorize purchases from the iTunes Store, App Store, and iBooks Store, as well as with Apple Pay. Developers can also allow you to use Touch ID to sign into their apps.</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="nunc-leo-img">
+						<img src="{% static '../static/images/Face-ID.png' %}"><br>
+						<h3>face lock</h3>
+						<p>Face ID uses a "TrueDepth camera system", which consists of sensors, cameras, and a dot projector at the top of the iPhone display in the notch to create a detailed 3D map of your face. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="testemonial text-center" id='section5'>
+		<div class="container-fluid">
+			<h1>Testimonial</h1>
+			<div class="row">
+				<div class="col-md-4">
+					<img src="{% static '../static/images/test1.jpg' %}">
+					<h3>Ankush sharma</h3>
+					<p><span>"</span>If you prefer Telephoto the zoom lens and The Best possible display in the market then you should either get Xs/max or 11 pro/pro max.<span>"</span></p>
+				</div>
+				<div class="col-md-4">
+					<img src="{% static '../static/images/test2.jpg' %}">
+					<h3>Akash sharma</h3>
+					<p><span>"</span>Go for iPhone 11 and you will not regret in the future<span>"</span></p>
+				</div>
+				<div class="col-md-4">
+					<img src="{% static '../static/images/test3.jpg' %}">
+					<h3>Vivek kapila</h3>
+					<p><span>"</span>WHy iOS will need anytime 6GB of RAM? iOS works fine even with 2GB RAM, Android is the one that need in a hurry more and more RAM, not iOS<span>"</span></p>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<div class="Section">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="Section-left">
+					<h2>Lots to love.Less to spend.</h2>
+					<p>When you care about people's happiness and productivity, you give them what brings out the best in them and their creativity. And if you give them a choice, they'll say, 'I want an iPhone,' or 'I want a Mac.' We think we can win a lot of corporate decisions at that level.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="contact" id="section6">
+		<div class="container-fluid">
+			<h1 class="text-center">Contact us</h1>
+			<div class="row">
+				<div class="col-md-6">
+					<form>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="fname">First Name</label>
+								<input type="text" class="form-control" id="fname">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="lname">Last Name</label>
+								<input type="text" class="form-control" id="lname">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="mobile">Mobile Number</label>
+								<input type="text" class="form-control" id="mobile">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="email">Email Address</label>
+								<input type="email" class="form-control" id="email">
+							</div>
+						</div>
+						<div class="form-row">
+							<label for="exampleFormControlTextarea1">Message</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>
+						<div class="contactbutton text-right">
+							<button type="button" class="btn">Submit</button>
+						</div>
+
+
+					</form>
+				</div>
+				<div class="col-md-6">
+					<div class="map">
+						<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=lakeshore%20green%20palava%20city&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net/en/">embedgooglemap.net</a></div><style>.mapouter{position:relative;text-align:right;height:350px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:350px;width:100%;}</style></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="copy-right">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<h5>Copyright © 2020 <a href>apple iphones</a> - designed by <a href>vikas sharma</a><a href="test.html">abc</a></h5>
+			</div>
+			<div class="col-md-4">
+				<ul class="list-inline social">
+					<li class="list-inline-item"><i class="fab fa-facebook"></i></li>
+					<li class="list-inline-item"><i class="fab fa-twitter"></i></li>
+					<li class="list-inline-item"><i class="fab fa-invision"></i></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+	</body>
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "200px";
+			}
+
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			}
+</script>
+	<script
+	src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+	<script src="{% static '../static/js/bootstrap.min.js' %}"></script>
+
+</html>

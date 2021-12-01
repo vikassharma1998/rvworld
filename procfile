@@ -1,0 +1,1 @@
+web: genicorn CCMS.wsgi --log-file -
