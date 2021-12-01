@@ -1,1 +1,1 @@
-web: genicorn apple.wsgi --log-file -
+web: genicorn apple.wsgi 
